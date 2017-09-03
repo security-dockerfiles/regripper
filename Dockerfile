@@ -27,3 +27,5 @@ VOLUME /data
 USER regripper
 
 WORKDIR /regripper
+
+ENTRYPOINT ["perl", "rip.pl"]

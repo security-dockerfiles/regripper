@@ -4,7 +4,7 @@ How to use
 ## Using image built by me
 
 ```
-docker run -it --rm -v /your/path/to/System32/config:/data:ro ilyaglow/regripper perl rip.pl -p winver -r /data/SOFTWARE
+docker run -it --rm -v /your/path/to/System32/config:/data:ro ilyaglow/regripper -p winver -r /data/SOFTWARE
 ```
 
 ### Thanks

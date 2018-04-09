@@ -1,6 +1,8 @@
 FROM alpine
 LABEL maintainer "ilya@ilyaglotov.com"
 
+ENV PERL5LIB /regripper
+
 RUN apk update \
   && apk add perl \
   && apk add --virtual .temp \

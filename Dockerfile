@@ -1,6 +1,7 @@
-FROM alpine
+FROM alpine:latest
 LABEL maintainer "ilya@ilyaglotov.com"
 
+ARG COMMIT=f65ac5f08e022dca108d5f9eb381f6c4fc5d4801
 ENV PERL5LIB /regripper
 
 RUN apk update \
@@ -8,7 +9,6 @@ RUN apk update \
   && apk add --virtual .temp \
              perl-dev \
              make \
-             git \
              wget \
              \
   && wget https://cpanmin.us/ -O /bin/cpanm \
@@ -17,12 +17,13 @@ RUN apk update \
   && rm -rf /var/cache/apk/*
 
 RUN adduser -D regripper \
-  && git clone --branch=master \
-              --depth=1 \
-              https://github.com/keydet89/RegRipper2.8.git /regripper \
+  && wget https://github.com/keydet89/RegRipper3.0/archive/$COMMIT.tar.gz -O /regripper.tar.gz \
+  && tar xvf /regripper.tar.gz \
+  && mv /RegRipper* /regripper \
   && chown -R regripper /regripper \
   && apk del .temp \
-  && rm -rf /regripper/.git
+  && cd /regripper \
+  && rm -rf *.exe *.bat *.zip
 
 VOLUME /data
 
